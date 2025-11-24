@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from src.domain.unit_of_work import ITransactionManager
-from src.infrastructure.unit_of_work import UnitOfWork
+from .unit_of_work import UnitOfWork
 
 
 class TransactionManager(ITransactionManager):

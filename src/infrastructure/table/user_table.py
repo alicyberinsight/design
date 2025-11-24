@@ -7,7 +7,7 @@ from sqlalchemy.orm import (
     mapped_column,
 )
 
-from src.infrastructure.table import Base
+from . import Base
 
 
 class UserTable(Base):
