@@ -1,6 +1,4 @@
 from collections.abc import AsyncIterator
-from contextlib import AbstractAsyncContextManager
-
 
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
@@ -8,7 +6,6 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from src.domain.unit_of_work import IUnitOfWork
 from src.domain.unit_of_work import ITransactionManager
 from src.infrastructure.unit_of_work import UnitOfWork
 
@@ -30,4 +27,10 @@ class TransactionManager(ITransactionManager):
         )
 
     async def get_uow(self) -> AsyncIterator[UnitOfWork]:
-        pass
+        async with self._async_session_factory() as session:
+            try:
+                yield UnitOfWork(session=session)
+            except Exception as e:
+                await session.rollback()
+
+                raise e
