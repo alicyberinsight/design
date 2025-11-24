@@ -4,4 +4,9 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "asyncpg>=0.30.0",
+    "dependency-injector>=4.48.2",
+    "pydantic>=2.12.4",
+    "sqlalchemy[asyncio]>=2.0.44",
+]
