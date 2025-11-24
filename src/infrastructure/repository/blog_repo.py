@@ -11,7 +11,10 @@ class BlogRepository(IBlogRepository):
         self._session = session
 
     async def create_blog(self, title: str, content: str) -> Blog:
-        blog = BlogTable(title=title, content=content)
+        blog = BlogTable(
+            title=title,
+            content=content,
+        )
         self._session.add(blog)
         await self._session.flush()
         await self._session.refresh(blog)
