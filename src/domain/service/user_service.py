@@ -17,8 +17,9 @@ class UserService:
         createUserRequest: CreateUserRequest,
     ) -> User:
         async with self._transaction_manager.get_uow() as uow:
-            await uow.user_repository.create_user(
+            user = await uow.user_repository.create_user(
                 email=createUserRequest.email,
                 full_name=createUserRequest.full_name,
             )
             await uow.commit()
+            return user
