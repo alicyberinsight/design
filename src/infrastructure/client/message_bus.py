@@ -2,7 +2,11 @@ import json
 from typing import Any
 
 from aio_pika import Message, connect_robust
-from aio_pika.abc import AbstractRobustChannel, AbstractRobustConnection, DeliveryMode
+from aio_pika.abc import (
+    AbstractRobustChannel,
+    AbstractRobustConnection,
+    DeliveryMode,
+)
 
 from src.app_config import AppConfig
 from src.domain.client import IMessageBus
