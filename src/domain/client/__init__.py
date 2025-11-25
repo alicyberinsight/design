@@ -1,6 +1,6 @@
-from .rabbitmq_client import IRabbitMQClient
+from .message_bus import IMessageBus
 
 
 __all__ = [
-    "IRabbitMQClient",
+    "IMessageBus",
 ]

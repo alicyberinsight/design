@@ -1,11 +1,11 @@
 from typing import Any
 
 from src.app_config import AppConfig
-from src.domain.client import IRabbitMQClient
+from src.domain.client import IMessageBus
 from src.domain.model import QueueTopic
 
 
-class RabbitMQClient(IRabbitMQClient):
+class MessageBus(IMessageBus):
     def __init__(
         self,
         app_config: AppConfig,

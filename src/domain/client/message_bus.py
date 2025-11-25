@@ -6,7 +6,7 @@ from typing import (
 from src.domain.model import QueueTopic
 
 
-class IRabbitMQClient(Protocol):
+class IMessageBus(Protocol):
 
     async def connect(self) -> None:
         pass

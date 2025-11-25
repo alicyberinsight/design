@@ -6,7 +6,7 @@ from src.domain.service import (
     BlogService,
     UserService,
 )
-from src.infrastructure.client import RabbitMQClient
+from src.infrastructure.client import MessageBus
 from src.infrastructure.unit_of_work import TransactionManager
 
 from .app_config import AppConfig
@@ -20,14 +20,14 @@ class AppContainer(DeclarativeContainer):
         app_config=app_config,
     )
 
-    rabbitmq_client = providers.Singleton(
-        RabbitMQClient,
+    message_bus = providers.Singleton(
+        MessageBus,
         app_config=app_config,
     )
 
     job_gateway = providers.Singleton(
         JobGateway,
-        rabbitmq_client=rabbitmq_client,
+        message_bus=message_bus,
     )
 
     blog_service = providers.Factory(
