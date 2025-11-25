@@ -1,4 +1,4 @@
-from src import AppContainer
+from src.app_container import AppContainer
 
 
 app_container = AppContainer()

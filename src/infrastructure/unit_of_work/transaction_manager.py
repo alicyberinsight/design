@@ -6,14 +6,18 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
+from src.app_config import AppConfig
 from src.domain.unit_of_work import ITransactionManager
 from .unit_of_work import UnitOfWork
 
 
 class TransactionManager(ITransactionManager):
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        app_config: AppConfig,
+    ) -> None:
         engine = create_async_engine(
-            "",
+            app_config.database_url,
             echo=True,
             future=True,
             pool_size=10,
