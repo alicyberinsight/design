@@ -1,10 +1,14 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.domain.repository import IBlogRepository
-from src.domain.repository import IUserRepository
+from src.domain.repository import (
+    IBlogRepository,
+    IUserRepository,
+)
 from src.domain.unit_of_work import IUnitOfWork
-from src.infrastructure.repository import BlogRepository
-from src.infrastructure.repository import UserRepository
+from src.infrastructure.repository import (
+    BlogRepository,
+    UserRepository,
+)
 
 
 class UnitOfWork(IUnitOfWork):

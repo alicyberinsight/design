@@ -1,7 +1,9 @@
 from typing import Protocol
 
-from src.domain.repository import IBlogRepository
-from src.domain.repository import IUserRepository
+from src.domain.repository import (
+    IBlogRepository,
+    IUserRepository,
+)
 
 
 class IUnitOfWork(Protocol):
