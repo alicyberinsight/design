@@ -1,4 +1,8 @@
+import json
 from typing import Any
+
+from aio_pika import Message, connect_robust
+from aio_pika.abc import AbstractRobustChannel, AbstractRobustConnection, DeliveryMode
 
 from src.app_config import AppConfig
 from src.domain.client import IMessageBus
@@ -10,17 +14,36 @@ class MessageBus(IMessageBus):
         self,
         app_config: AppConfig,
     ) -> None:
-        self._app_config = app_config
+        self._url = app_config.rabbitmq_url
+        self._connection: AbstractRobustConnection | None = None
+        self._channel: AbstractRobustChannel | None = None
 
     async def connect(self) -> None:
-        raise NotImplementedError()
+        await self.disconnect()
+
+        self._connection = await connect_robust(self._url)
+        self._channel = await self._connection.channel()
 
     async def disconnect(self) -> None:
-        raise NotImplementedError()
+        if self._connection:
+            try:
+                await self._connection.close()
+            except:
+                pass
+
+        self._connection = None
+        self._channel = None
 
     async def publish(
         self,
         queue: QueueTopic,
         message: dict[str, Any],
     ) -> None:
-        raise NotImplementedError()
+        if not self._channel or self._channel.is_closed:
+            raise RuntimeError("MessageBus is not connected")
+
+        body = json.dumps(message).encode()
+        await self._channel.default_exchange.publish(
+            Message(body=body, delivery_mode=DeliveryMode.PERSISTENT),
+            routing_key=queue.value,
+        )
