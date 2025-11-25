@@ -1,14 +1,14 @@
-from src.domain.model import (
+from src.model import (
     Blog,
     CreateBlogRequest,
 )
-from src.domain.unit_of_work import ITransactionManager
+from src.unit_of_work import TransactionManager
 
 
 class BlogService:
     def __init__(
         self,
-        transaction_manager: ITransactionManager,
+        transaction_manager: TransactionManager,
     ) -> None:
         self._transaction_manager = transaction_manager
 

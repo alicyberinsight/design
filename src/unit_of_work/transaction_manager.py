@@ -6,11 +6,10 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from src.domain.unit_of_work import ITransactionManager
 from .unit_of_work import UnitOfWork
 
 
-class TransactionManager(ITransactionManager):
+class TransactionManager:
     def __init__(self) -> None:
         engine = create_async_engine(
             "",

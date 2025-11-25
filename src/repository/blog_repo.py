@@ -1,12 +1,10 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
-from src.domain.model import Blog
-from src.domain.repository import IBlogRepository
-from src.infrastructure.table import BlogTable
+from src.model import Blog
+from src.table import BlogTable
 
 
-class BlogRepository(IBlogRepository):
+class BlogRepository:
     def __init__(self, session: AsyncSession) -> None:
         self._session = session
 

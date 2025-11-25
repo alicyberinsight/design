@@ -1,11 +1,11 @@
 from dependency_injector import providers
 from dependency_injector.containers import DeclarativeContainer
 
-from src.domain.service import (
+from src.service import (
     BlogService,
     UserService,
 )
-from src.infrastructure.unit_of_work import TransactionManager
+from src.unit_of_work import TransactionManager
 
 
 class AppContainer(DeclarativeContainer):

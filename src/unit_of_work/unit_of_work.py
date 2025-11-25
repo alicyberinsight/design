@@ -1,22 +1,17 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.domain.repository import (
-    IBlogRepository,
-    IUserRepository,
-)
-from src.domain.unit_of_work import IUnitOfWork
-from src.infrastructure.repository import (
+from src.repository import (
     BlogRepository,
     UserRepository,
 )
 
 
-class UnitOfWork(IUnitOfWork):
+class UnitOfWork:
     def __init__(self, session: AsyncSession) -> None:
         self._session = session
 
-        self._blog_repository: IBlogRepository | None = None
-        self._user_repository: IUserRepository | None = None
+        self._blog_repository: BlogRepository | None = None
+        self._user_repository: UserRepository | None = None
 
     async def commit(self) -> None:
         await self._session.commit()
@@ -25,14 +20,14 @@ class UnitOfWork(IUnitOfWork):
         await self._session.rollback()
 
     @property
-    def blog_repository(self) -> IBlogRepository:
+    def blog_repository(self) -> BlogRepository:
         if self._blog_repository is None:
             self._blog_repository = BlogRepository(session=self._session)
 
         return self._blog_repository
 
     @property
-    def user_repository(self) -> IUserRepository:
+    def user_repository(self) -> UserRepository:
         if self._user_repository is None:
             self._user_repository = UserRepository(session=self._session)
 
