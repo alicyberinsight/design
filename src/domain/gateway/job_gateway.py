@@ -1,5 +1,5 @@
 from src.domain.client import IMessageBus
-from src.domain.model.job_queue import QueueTopic
+from src.domain.model import QueueTopic
 
 
 class JobGateway:
