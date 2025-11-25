@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.domain.model import User
 from src.domain.repository import IUserRepository
-from src.infrastructure.table import UserTable
+from src.infrastructure.orm_table import UserTable
 
 
 class UserRepository(IUserRepository):

@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.domain.model import Blog
 from src.domain.repository import IBlogRepository
-from src.infrastructure.table import BlogTable
+from src.infrastructure.orm_table import BlogTable
 
 
 class BlogRepository(IBlogRepository):
