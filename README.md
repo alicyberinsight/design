@@ -7,13 +7,20 @@
 ├─ README.md
 ├─ pyproject.toml
 ├─ src
-│  ├─ __init__.py
+│  ├─ app_config.py
 │  ├─ app_container.py
 │  ├─ domain
 │  │  ├─ __init__.py
+│  │  ├─ client
+│  │  │  ├─ __init__.py
+│  │  │  └─ message_bus.py
+│  │  ├─ gateway
+│  │  │  ├─ __init__.py
+│  │  │  └─ job_gateway.py
 │  │  ├─ model
 │  │  │  ├─ __init__.py
 │  │  │  ├─ blog.py
+│  │  │  ├─ job_queue.py
 │  │  │  └─ user.py
 │  │  ├─ repository
 │  │  │  ├─ __init__.py
@@ -29,15 +36,18 @@
 │  │     └─ unit_of_work.py
 │  ├─ infrastructure
 │  │  ├─ __init__.py
-│  │  ├─ repository
+│  │  ├─ client
 │  │  │  ├─ __init__.py
-│  │  │  ├─ blog_repo.py
-│  │  │  └─ user_repo.py
-│  │  ├─ table
+│  │  │  └─ message_bus.py
+│  │  ├─ orm_table
 │  │  │  ├─ __init__.py
 │  │  │  ├─ base.py
 │  │  │  ├─ blog_table.py
 │  │  │  └─ user_table.py
+│  │  ├─ repository
+│  │  │  ├─ __init__.py
+│  │  │  ├─ blog_repo.py
+│  │  │  └─ user_repo.py
 │  │  └─ unit_of_work
 │  │     ├─ __init__.py
 │  │     ├─ transaction_manager.py
