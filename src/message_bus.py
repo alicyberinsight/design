@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 from src.app_config import AppConfig
-from enum import StrEnum
+from enum import Enum
 
 from faststream.rabbit import RabbitBroker, RabbitQueue
 
 
-class QueueTopic(StrEnum):
+class QueueTopic(Enum):
     INDEX_BLOG = "index_blog"
 
 
